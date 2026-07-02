@@ -1,6 +1,6 @@
 # Al Brooks Price Action Skill
 
-这是一个给 Codex / AI Agent 使用的行情分析 skill。
+这是一个给 Codex / Claude Code 使用的行情分析 skill。
 
 如果你想看完整的中文工作流说明，直接看：
 
@@ -82,7 +82,7 @@
 ## 关键文件说明
 
 - `SKILL.md`
-  - skill 主说明书
+  - skill 主说明书（Codex + Claude Code 共用）
   - 定义触发条件、默认值、执行流程、分析要求
 - `references/request-parsing.md`
   - 说明如何把用户文字或截图信息转成 symbol、timeframe、recent 等参数
@@ -199,13 +199,23 @@
 
 ## 安装
 
+### Codex
+
 把整个目录放到：
 
 ```bash
 ~/.codex/skills/al-brooks-price-action
 ```
 
-或者按你自己的 skill 管理方式安装。
+### Claude Code
+
+```bash
+# Linux / macOS / WSL
+git clone https://github.com/jinzaizhichi/codex-al-brooks-price-action-skill.git
+ln -s "$(pwd)/codex-al-brooks-price-action-skill" ~/.claude/skills/al-brooks-price-action
+```
+
+或按你自己的 skill 管理方式安装。
 
 ## 依赖安装
 

@@ -768,9 +768,19 @@ def filter_requested_window(
     requested_end_exclusive: datetime | None,
 ) -> "pd.DataFrame":
     filtered = frame
+    # Normalize timezone: yfinance returns tz-aware index; user-supplied
+    # start/end may be tz-naive. Compare on consistent types.
     if requested_start is not None:
+        if filtered.index.tz is not None and requested_start.tzinfo is None:
+            requested_start = requested_start.replace(tzinfo=filtered.index.tz)
+        elif filtered.index.tz is None and requested_start.tzinfo is not None:
+            filtered.index = filtered.index.tz_localize(None)
         filtered = filtered[filtered.index >= requested_start]
     if requested_end_exclusive is not None:
+        if filtered.index.tz is not None and requested_end_exclusive.tzinfo is None:
+            requested_end_exclusive = requested_end_exclusive.replace(tzinfo=filtered.index.tz)
+        elif filtered.index.tz is None and requested_end_exclusive.tzinfo is not None:
+            filtered.index = filtered.index.tz_localize(None)
         filtered = filtered[filtered.index < requested_end_exclusive]
     return filtered
 

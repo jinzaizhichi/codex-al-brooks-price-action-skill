@@ -1,11 +1,13 @@
 ---
 name: al-brooks-price-action
-description: Analyze chart screenshots or user-described market segments with an Al Brooks price-action framework. Use when the user wants the agent to infer symbol, timeframe, and range from a screenshot or text, fetch OHLC and EMA data, and produce scenario-based trading analysis with levels, invalidation, and risk notes. For generic short-term BTC requests with missing venue or timeframe, default to Binance BTC perpetual on 5-minute bars.
+description: Analyze chart screenshots or user-described market segments with an Al Brooks price-action framework. Use when the user explicitly asks for chart analysis, price action review, or a trade idea driven by price action. For generic short-term BTC analysis requests, default to Binance BTC perpetual on 5-minute bars.
 ---
 
 # Al Brooks Price Action
 
-Use this skill when the user wants chart analysis or a trade idea driven by price action, not just a raw indicator summary.
+Use this skill when the user **explicitly asks** for chart analysis or a trade idea driven by price action — not just a raw indicator summary.
+
+**Trigger**: 用户明确说"分析"/"看下行情"/"画图"/"价格行为"等时才触发。**不自动抓数据**，不在闲聊中提到 BTC/股票时自动执行。
 
 ## What this skill does
 

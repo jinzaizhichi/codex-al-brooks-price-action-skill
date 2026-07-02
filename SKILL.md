@@ -47,13 +47,14 @@ Use this skill when the user **explicitly asks** for chart analysis or a trade i
    - If the user asks about the latest setup, fetch immediately before answering and include the exact data range used.
    - If the user says "recent", "last", or "过去/最近一段", prefer `--recent`, for example `--recent 30m` or `--recent 6h`.
 
-3. Read price action in this order.
-   - Higher-timeframe context.
-   - Market cycle: bull trend, bear trend, trading range, breakout mode, or reversal attempt.
-   - Always-in direction.
-   - Signal quality: body size, close location, overlap, follow-through, trapped traders.
-   - Location: EMA, prior swing high or low, channel line, range edge, gap, or measured-move target.
-   - Pattern quality: see `references/brooks-framework.md`.
+3. Read price action in this order — using [[brooks-price-action-framework]]:
+   - **Bar reading**: 对照 `quick-reference/bar-reading-checklist.md` 解读每根关键 Bar（实体→收盘→影线→范围→重叠，5 要素评分）
+   - **Trend/Swing check**: 对照 `quick-reference/trend-checklist.md` 5 步判断市场阶段和 Always In 方向
+   - Higher-timeframe context → Market cycle: bull trend, bear trend, trading range, breakout, reversal
+   - **趋势中**: 加载 `01-trends/01-trend-framework.md`（Spike&Channel/回调/量度目标）+ `01-trends/02-always-in.md`
+   - **区间中**: 加载 `02-trading-ranges/01-range-framework.md`（区间=BearBullFlag/双顶底是延续/突破数学）
+   - **判断反转**: 对照 `quick-reference/reversal-checklist.md` 4 步验证 + 加载 `03-reversals/01-reversal-framework.md`
+   - 输出: 对照 `quick-reference/trade-plan-template.md` 填 Bull/Bear/Wait Case
 
 4. Build scenarios, not certainty.
    - Provide a bull case, bear case, and wait condition when the chart is range-bound.
@@ -145,12 +146,24 @@ python3 scripts/fetch_bars.py \
 
 - `references/request-parsing.md`
   Use when the user gives a screenshot, a vague market description, or a non-standard symbol format.
-- `references/brooks-framework.md`
-  Use when you need the Brooks pattern checklist and interpretation rules.
 - `references/output-template.md`
   Use when writing the final analysis.
 - `references/safety.md`
   Use whenever the user wants a current trade recommendation or position idea.
+
+### Brooks 知识框架（主要引用源）
+
+分析时默认加载 **[[brooks-price-action-framework]]**，按场景选择：
+
+| 场景 | 加载 |
+|------|------|
+| 解读单根 Bar | `quick-reference/bar-reading-checklist.md` |
+| 判断趋势/阶段 | `quick-reference/trend-checklist.md` → `01-trends/` |
+| 判断区间 | `02-trading-ranges/01-range-framework.md` |
+| 判断反转 | `quick-reference/reversal-checklist.md` → `03-reversals/` |
+| 输出交易计划 | `quick-reference/trade-plan-template.md` |
+
+旧 `references/brooks-framework.md` 已弃用，不再引用。
 
 ## Hard rules
 

@@ -84,6 +84,8 @@
 - `SKILL.md`
   - skill 主说明书（Codex + Claude Code 共用）
   - 定义触发条件、默认值、执行流程、分析要求
+- `agents/openai.yaml`
+  - Codex 专用配置文件（Claude Code 无需）
 - `references/request-parsing.md`
   - 说明如何把用户文字或截图信息转成 symbol、timeframe、recent 等参数
 - `references/brooks-framework.md`
